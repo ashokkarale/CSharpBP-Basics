@@ -24,8 +24,8 @@ namespace Acme.Common
             // Code to send an email
 
             var confirmation = "Message sent: " + subject;
-            var loggingService = new LoggingService();
-            loggingService.LogAction(confirmation);
+            //var loggingService = new LoggingService();
+            LoggingService.LogAction(confirmation);
             return confirmation;
         }
 

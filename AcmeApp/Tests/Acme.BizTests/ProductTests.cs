@@ -90,5 +90,65 @@ namespace Acme.Biz.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void ProductName_Format()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            currentProduct.ProductName = " Steel Hammer  ";
+            var expected = "Steel Hammer";
+            //Act
+            var actual = currentProduct.ProductName;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void ProductName_TooShort()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            currentProduct.ProductName = "aw";
+            string expected = null;
+            string expectedMessage = "Product Name must be at least 3 characters";
+            //Act
+            var actual = currentProduct.ProductName;
+            var actualMessage = currentProduct.ValidationMessage;
+            //Assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
+
+        [TestMethod()]
+        public void ProductName_TooLong()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            currentProduct.ProductName = "Andrew Helthy Sam Delta Thima";
+            string expected = null;
+            string expectedMessage = "Product Name cannot be at more than 20 characters";
+            //Act
+            var actual = currentProduct.ProductName;
+            var actualMessage = currentProduct.ValidationMessage;
+            //Assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
+        [TestMethod()]
+        public void ProductName_JustRight()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            currentProduct.ProductName = "Ask";
+            string expected = "Ask";
+            string expectedMessage = null;
+            //Act
+            var actual = currentProduct.ProductName;
+            var actualMessage = currentProduct.ValidationMessage;
+            //Assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedMessage, actualMessage);
+        }
     }
 }

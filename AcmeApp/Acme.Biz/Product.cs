@@ -45,8 +45,24 @@ namespace Acme.Biz
 
         public string ProductName
         {
-            get { return productName; }
-            set { productName = value; }
+            get {
+                var formatedValue = productName?.Trim();
+                return formatedValue;
+            }
+            set {
+                if (value.Length < 3)
+                {
+                    ValidationMessage = "Product Name must be at least 3 characters";
+                }
+                else if (value.Length > 20)
+                {
+                    ValidationMessage = "Product Name cannot be at more than 20 characters";
+                }
+                else
+                {
+                    productName = value;
+                }
+            }
         }
         private string description;
 
@@ -79,8 +95,10 @@ namespace Acme.Biz
             set { productVendor = value; }
         }
 
+        public string ValidationMessage { get; private set; }
+
         #endregion
-        
+
         public string SayHello()
         {
             //var vendor = new Vendor();

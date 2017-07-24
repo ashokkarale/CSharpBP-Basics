@@ -150,5 +150,71 @@ namespace Acme.Biz.Tests
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedMessage, actualMessage);
         }
+
+        [TestMethod()]
+        public void Category_DefaultValue()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+
+            var expected = "Tools";
+            //Act
+            var actual = currentProduct.Category;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Category_NewValue()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            currentProduct.Category = "Garden";
+
+            var expected = "Garden";
+            //Act
+            var actual = currentProduct.Category;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Sequence_DefaultValue()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            var expected = 1;
+            //Act
+            var actual = currentProduct.SequenceNumber;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Sequence_NewValue()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            currentProduct.SequenceNumber=2;
+
+            var expected = 2;
+            //Act
+            var actual = currentProduct.SequenceNumber;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void ProductCode_DefaultValue()
+        {
+            //Arrenge
+            var currentProduct = new Product();
+            var expected = "Tools-1";
+
+            //Act
+            var actual = currentProduct.ProductCode;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

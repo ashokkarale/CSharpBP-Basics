@@ -20,6 +20,7 @@ namespace Acme.Biz
         {
             Console.WriteLine("Product instance created");
             this.MinimumPrice = .96m;
+            this.Category = "Tools";
         }
 
         public Product(int productId, string productName, string description) : this()
@@ -97,6 +98,11 @@ namespace Acme.Biz
 
         public string ValidationMessage { get; private set; }
 
+        public string Category { get; set; }
+        public int SequenceNumber { get; set; } = 1;
+
+        public string ProductCode => this.Category + "-" + this.SequenceNumber;
+
         #endregion
 
         public string SayHello()
@@ -110,6 +116,16 @@ namespace Acme.Biz
             var result = LogAction("saying hello!");
             
             return "Hello " + ProductName + " (" + ProductId + "): " + Description + " Available on: " + AvailibilityDate?.ToShortDateString();
+
+        }
+
+        /// <summary>
+        /// Demo method
+        /// </summary>
+        /// <param name="demo1"></param>
+        /// <param name="demo2"></param>
+        public void DemoMethod(string demo1, int demo2)
+        {
 
         }
     }

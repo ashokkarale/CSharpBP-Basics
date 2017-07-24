@@ -102,9 +102,18 @@ namespace Acme.Biz
         public int SequenceNumber { get; set; } = 1;
 
         public string ProductCode => this.Category + "-" + this.SequenceNumber;
+        public decimal Cost { get; set; }
 
         #endregion
 
+        /// <summary>
+        /// Calculates the suggesed retail price.
+        /// </summary>
+        /// <param name="markupPercent">Percent used to mark up the cost.</param>
+        /// <returns></returns>
+        public decimal CalculateSuggestedPrice(decimal markupPercent) =>
+         this.Cost + (this.Cost * markupPercent / 100);
+        
         public string SayHello()
         {
             //var vendor = new Vendor();
@@ -119,14 +128,7 @@ namespace Acme.Biz
 
         }
 
-        /// <summary>
-        /// Demo method
-        /// </summary>
-        /// <param name="demo1"></param>
-        /// <param name="demo2"></param>
-        public void DemoMethod(string demo1, int demo2)
-        {
-
-        }
+        public override string ToString() =>
+            this.ProductName + " (" + this.ProductId + ")";
     }
 }

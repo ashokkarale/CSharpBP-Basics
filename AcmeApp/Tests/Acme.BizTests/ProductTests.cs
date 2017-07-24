@@ -21,8 +21,8 @@ namespace Acme.Biz.Tests
             currentParrent.ProductId = 1;
             currentParrent.Description = "15-inch steel blade hand saw";
             currentParrent.ProductVendor.CompanyName = "ABC Corp.";
-            var expected = "Hello Saw (1): 15-inch steel blade hand saw"+" Available on: ";
-
+            var expected = "Hello Saw (1): 15-inch steel blade hand saw" + " Available on: ";
+            var demo = currentParrent.ToString();
             //Act
             var actual = currentParrent.SayHello();
             //Assert
@@ -195,7 +195,7 @@ namespace Acme.Biz.Tests
         {
             //Arrenge
             var currentProduct = new Product();
-            currentProduct.SequenceNumber=2;
+            currentProduct.SequenceNumber = 2;
 
             var expected = 2;
             //Act
@@ -213,6 +213,21 @@ namespace Acme.Biz.Tests
 
             //Act
             var actual = currentProduct.ProductCode;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void CalculateSuggestedPriceTest()
+        {
+            //Arrenge
+            var currentProduct = new Product(1,"Saw","");
+            currentProduct.Cost = 50m;
+            var expected = 55m;
+
+            //Act
+            var actual = currentProduct.CalculateSuggestedPrice(10m);
+
             //Assert
             Assert.AreEqual(expected, actual);
         }
